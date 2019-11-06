@@ -4,11 +4,11 @@
 //the queue
 
 
-template <typename T>
+template <typename A>
 class queue {
 private:
 	struct node {
-		T data;	//void ptr to make it ADT
+		A data;	//void ptr to make it ADT
 		node* next;	//ptr to next struct
 	};
 	node* back = NULL;
@@ -18,15 +18,15 @@ public:
 		back = NULL;
 		front = NULL;
 	}
-	queue(T a) {	//constructor
-		enqueue(a);
+	queue(A v) {	//constructor
+		enqueue(v);
 	}
 	~queue() { //destructor
 		while (!isEmpty()) {
 			dequeue();
 		}
 	}
-	void enqueue(T a) {	//put a new node into the queue
+	void enqueue(A a) {	//put a new node into the queue
 		node* temp = new node;
 		temp->data = a;
 		temp->next = NULL;
@@ -39,7 +39,7 @@ public:
 			back = temp;
 		}
 	}
-	T getFront() {
+	A getFront() {
 		if (front == NULL) {
 			return NULL;
 		}
@@ -47,12 +47,12 @@ public:
 			return front->data;
 		}
 	}
-	T dequeue() {	//take off the front and return value
+	A dequeue() {	//take off the front and return value
 		if (front == NULL) { //if queue is empty
 			return NULL;
 		}
 		else {
-			T ret = front->data;
+			A ret = front->data;
 			node* tmp = front;
 			if (back == front) {
 				front = NULL;
@@ -342,15 +342,89 @@ private:
 
 class minHeap {
 private:
-	int* root;
+	int* har;
+	int max;
+	int size;
 public:
-	minHeap(unsigned int size) {
-		root = new int[size];
+	minHeap(unsigned int s) {
+		if (s < 1) {
+
+		}
+		har = new int[s];
+		max = s;
+		size = 0;
 	}
-	void set(int v, int i) {
-		root[i] = v;
+	void print() {
+		for (int i = 0; i < size; i++) {
+			std::cout << har[i] << ((i != size - 1) ? ", " : "\n");
+		}
 	}
-	int get(int i) {
-		return root[i];
+	void add(int v) {
+		if (size == max) {
+			std::cout << "Overflow heap, could not insert" << v << "\n";
+			return;
+		}
+		//insert v at end
+		int i = size;
+		har[i] = v;
+		size++;
+
+		//if the parent is smaller than v
+		while (i != 0 && har[parent(i)] > har[i]) {
+			//swap parent and har[i]
+			swap(&har[i], &har[parent(i)]);
+			//check for har[parent]
+			i = parent(i);
+		}
+
+		
+	}
+	void del(int i) {
+		//move last in heap to the deleted index
+		size--;
+		har[i] = har[size];
+		har[size] = NULL;
+		int k;
+		while (har[left(i)] != NULL || har[right(i)] != NULL) {
+			
+			if (har[left(i)] != NULL && har[right(i)] != NULL) {
+				k = (har[left(i)] < har[right(i)]) ? left(i) : right(i);
+				if (har[i] < har[k]) {
+					//finished while
+					return;
+				}
+				else {
+					swap(&har[i], &har[k]);
+					i = k;
+				}
+			}
+			else {
+				//har[i] has only one child
+				k = (har[left(i)] == NULL) ? right(i) : left(i);
+				if (har[i] < har[k]) {
+					//finished while
+					return;
+				}
+				else {
+					swap(&har[i], &har[k]);
+					i = k;
+				}
+			}
+		}
+	}
+private:
+	void swap(int *x, int *y) {
+		int temp = *x;
+		*x = *y;
+		*y = temp;
+	}
+	int parent(int i) {
+		return (i - 2) / 2;
+	}
+	int left(int i) {
+		return (2 * i + 1);
+	}
+	int right(int i) {
+		return (2 * i + 2);
 	}
 };

@@ -4,32 +4,19 @@
 using std::cout;
 using std::cin;
 
+
+
 int main() {
-	int* a;
-	{
+	
+	
+	minHeap h(8);
+	int c;
 
-		a = new int[4];
-		a[2] = 2;
-		a[0] = 1;
-		a[1] = 7;
+	for (int i = 0; i < 8; i++) {
+		cin >> c;
+		h.add(c);
+		h.print();
 	}
-	std::cout << a[2] << ", " << a[0] << "\n";
-
-
-
-
-	/*
-	minHeap h(5);
-
-	h.set(0, 4);
-	h.set(1, 5);
-	h.set(2, 7);
-	std::cout << h.get(0) << ", " << h.get(1) << "\n";
-
-
-	*/
-
-
 
 
 
