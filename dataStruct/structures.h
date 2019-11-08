@@ -1,9 +1,7 @@
 #pragma once
-
+#include <string>
 
 //the queue
-
-
 template <typename A>
 class queue {
 private:
@@ -253,9 +251,8 @@ public:
 		}
 		return tmp->data;
 	}
-	//display() function needs the << operator to be overloaded to work correcty with new class types
-	/*
-	void display(const std::string &listName) {
+	
+	void display(std::string &listName) {
 		//create temporary node pointer then set the pointer to point to the head of list
 		node *tmp;
 		tmp = head;
@@ -269,7 +266,6 @@ public:
 		}
 		std::cout << "}\n";
 	}
-	*/
 
 	//insert data at an index
 	void insert(const int &index, const l &value) {
@@ -338,6 +334,136 @@ private:
 	}
 };
 
+//linked map
+template <typename key, typename val>
+class linkedMap {
+private:
+	struct node {
+		key k;
+		val data;
+		node* next;
+	};
+	node *head, *tail;
+public:
+	//constructor
+	linkedMap() {
+		head = NULL;
+		tail = NULL;
+	}
+
+	//push a value to the back of the list
+	void pushBack(const key &index, const val &value) {
+		//create temp node; set tmp's data to n; set its pointer to NULL
+		node *tmp = new node;
+		tmp->data = value;
+		tmp->next = NULL;
+		tmp->k = index;
+
+		//if head doesnt exist then this is the first and only node
+		if (head == NULL) {
+			head = tmp;
+			tail = tmp;
+		}
+		else {
+			//set current tail's pointer to point to the temp node; then reset the tail to the temp
+			tail->next = tmp;
+			tail = tail->next;
+		}
+	}
+
+	//get the data at an index
+	val& at(const key &index) const {
+		int counter = 0;
+		node *tmp;
+		tmp = head;
+		while (tmp != NULL && index != tmp->k) {
+			tmp = tmp->next;
+			counter++;
+		}
+		return tmp->data;
+	}
+
+	void display(const std::string &listName) {
+		//create temporary node pointer then set the pointer to point to the head of list
+		node *tmp;
+		tmp = head;
+		std::cout << listName << ": {\n";
+		//go through the list with the tmp pointer by keep setting the tmp to the next pointer
+		int counter = 0;
+		while (tmp != NULL) {
+			std::cout << "<key: " << tmp->k << "> " << tmp->data << "\n";
+			tmp = tmp->next;
+			counter++;
+		}
+		std::cout << "}\n";
+	}
+
+	//insert data at an index
+	void insert(const key &index, const val &value) {
+		//if they index at value zero, place the node at the head
+		if (head == NULL) {
+			pushBack(index, value);
+		}
+		else if (index == head->k) {
+			front(index, value);
+		}
+		else {
+			node* tmp;
+			tmp = head;
+			//loop through until at the key or at the end of the list
+			for (int i = 0; (index != tmp->k) && (tmp->next != NULL); i++) {
+				tmp = tmp->next;
+			}
+			if (tmp->next == NULL) {
+				pushBack(index, value);
+			}
+			else {
+				tmp->data = value;
+			}
+		}
+	}
+
+	//delete entry at an index
+	void deleIndex(const key &index) {
+		if (index == head->k) {
+			deleHead();
+		}
+		else {
+			node* temp;
+			temp = head;
+			for (int i = 0; index == temp->k && (temp->next != NULL); i++) {
+				temp = temp->next;
+			}
+			if (temp->next == NULL && index != temp->k) {
+				return;
+			}
+			else {
+				dele(temp);
+			}
+		}
+	}
+private:
+	void dele(node* &beforeDel) {
+		node* temp;
+		temp = beforeDel->next;
+		beforeDel->next = temp->next;
+		delete temp;
+	}
+	void front(const key &index, const val &n) {
+		node *tmp = new node;
+		tmp->data = n;
+		tmp->k = index;
+		tmp->next = head;
+		head = tmp;
+	}
+	void deleHead() {
+		node* temp;
+		temp = head;
+		head = head->next;
+		delete temp;
+	}
+};
+
 
 
 class minHeap {
@@ -346,11 +472,14 @@ private:
 	int max;
 	int size;
 public:
-	minHeap(unsigned int s) {
+	minHeap(int s) {
 		if (s < 1) {
-
+			s = 1;
 		}
-		har = new int[s];
+		har = new int[s + 1];
+		for (int i = 0; i < s + 1; i++) {
+			har[i] = NULL;
+		}
 		max = s;
 		size = 0;
 	}
@@ -377,16 +506,20 @@ public:
 			i = parent(i);
 		}
 
-		
+
 	}
 	void del(int i) {
-		//move last in heap to the deleted index
+		if (i > max || i < 0) {
+			return;
+		}
 		size--;
 		har[i] = har[size];
 		har[size] = NULL;
+
 		int k;
-		while (har[left(i)] != NULL || har[right(i)] != NULL) {
-			
+		//while has right or left child
+		while (right(i) < size && har[left(i)] != NULL || har[right(i)] != NULL) {
+
 			if (har[left(i)] != NULL && har[right(i)] != NULL) {
 				k = (har[left(i)] < har[right(i)]) ? left(i) : right(i);
 				if (har[i] < har[k]) {
@@ -413,7 +546,7 @@ public:
 		}
 	}
 private:
-	void swap(int *x, int *y) {
+	void swap(int* x, int* y) {
 		int temp = *x;
 		*x = *y;
 		*y = temp;
