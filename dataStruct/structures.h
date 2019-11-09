@@ -477,8 +477,8 @@ public:
 		if (s < 1) {
 			s = 1;
 		}
-		har = new int[s + 1];
-		for (int i = 0; i < s + 1; i++) {
+		har = new int[s];
+		for (int i = 0; i < s; i++) {
 			har[i] = NULL;
 		}
 		max = s;
@@ -506,8 +506,6 @@ public:
 			//check for har[parent]
 			i = parent(i);
 		}
-
-
 	}
 	void del(int i) {
 		if (i > max || i < 0) {
@@ -516,11 +514,9 @@ public:
 		size--;
 		har[i] = har[size];
 		har[size] = NULL;
-
 		int k;
 		//while has right or left child
-		while (right(i) < size && har[left(i)] != NULL || har[right(i)] != NULL) {
-
+		while (hasAChild(i)) {
 			if (har[left(i)] != NULL && har[right(i)] != NULL) {
 				k = (har[left(i)] < har[right(i)]) ? left(i) : right(i);
 				if (har[i] < har[k]) {
@@ -547,13 +543,34 @@ public:
 		}
 	}
 private:
+	bool hasAChild(int i) {
+		if (right(i) < size) {
+			if (har[right(i)] != NULL || har[right(i)] != NULL) {
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
+		else if (left(i) < size) {
+			if (har[left(i)] != NULL) {
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
+		else {
+			return false;
+		}
+	}
 	void swap(int* x, int* y) {
 		int temp = *x;
 		*x = *y;
 		*y = temp;
 	}
 	int parent(int i) {
-		return (i - 2) / 2;
+		return (i - 1) / 2;
 	}
 	int left(int i) {
 		return (2 * i + 1);
