@@ -1,7 +1,7 @@
-#include <iostream>
 #include "structures.h"
 #include <fstream>
 #include <string>
+#include <iostream>
 
 #define FILENAME "list.txt"
 
@@ -25,8 +25,6 @@ class album {
 private:
 	std::string artist;
 	std::string name;
-	
-	
 	song* songs;
 	int songSize;
 public:
@@ -139,8 +137,57 @@ int main() {
 		
 	}
 	fin.close();
-	
+
 	m.display("Best Albums of All Time");
+	
+	//menu
+	int input;
+	std::string mSong;
+	std::string art;
+	std::string nam;
+	std::string minu;
+	std::string seco;
+	std::string another;
+	int count;
+	
+	do {
+		std::cout << "\n\n1:Enter an album \n2:Delete an album \n3:Display map \n4:Exit\n";
+		std::cin >> input;
+		std::cout << "input = " << input;
+		switch (input) {
+		case 1:
+			std::cout << "Enter album name: ";
+			std::cin.ignore();
+			getline(std::cin, nam);
+			std::cout << "Enter artist name: ";
+			getline(std::cin, art);
+			std::cout << "Enter number of songs: ";
+			std::cin >> count;
+			{
+				album alb(art, nam, count);
+				std::cin.ignore();
+				for (int i = 0; i < count; i++) {
+					std::cout << "Enter " << ((i == 0) ? "a" : "another") << " song name: ";
+					getline(std::cin, mSong);
+					alb.addSong(mSong);
+				}
+				m.pushBack(alb.getName(), alb);
+			}
+			break;
+		case 2:
+			std::cout << "Enter a key/album name to delete: ";
+			std::cin.ignore();
+			std::getline(std::cin, another);
+			m.deleIndex(another);
+			break;
+		case 3:
+			m.display("Displaying...");
+			break;
+		default:
+			std::cout << "please choose options 1-4";
+			break;
+		}
+	} while (input != 4);
 
 
 	std::cin.get();

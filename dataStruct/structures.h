@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include <iostream>
 
 //the queue
 template <typename A>
@@ -431,10 +432,10 @@ public:
 		else {
 			node* temp;
 			temp = head;
-			for (int i = 0; index == temp->k && (temp->next != NULL); i++) {
+			while(index != temp->next->k && (temp->next != NULL)) {
 				temp = temp->next;
 			}
-			if (temp->next == NULL && index != temp->k) {
+			if (index != temp->next->k) {
 				return;
 			}
 			else {
