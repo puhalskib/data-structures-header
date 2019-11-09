@@ -13,19 +13,20 @@
  -a linked list implementation
  examples: a list of your favorite CDs or your friend’s telephone numbers. 
 */
-
+struct t {
+	std::string min;
+	std::string sec;
+};
+struct song {
+	std::string name;
+	t time;
+};
 class album {
 private:
 	std::string artist;
 	std::string name;
-	struct t {
-		int min;
-		int sec;
-	};
-	struct song {
-		std::string name;
-		t time;
-	};
+	
+	
 	song* songs;
 	int songSize;
 public:
@@ -36,15 +37,15 @@ public:
 		songs = new song[size];
 		for (int i = 0; i < size; i++) {
 			songs[i].name = "";
-			songs[i].time.min = NULL;
-			songs[i].time.sec = NULL;
+			songs[i].time.min = "";
+			songs[i].time.sec = "";
 		}
 		songSize = size;
 	}
 	//default constructor
 	album() {}
 
-	void addSong(const std::string &s, const int &m, const int &se) {
+	void addSong(const std::string &s, const std::string &m, const std::string &se) {
 		int i = 0;
 		while (songs[i].name != "") {
 			i++;
@@ -67,7 +68,7 @@ public:
 		os << "Artist: " << artist << "\n";
 		os << "Album Name: " << name << "\n";
 		for (int i = 0; i < songSize; i++) {
-			if (songs[i].time.min != NULL) {
+			if (songs[i].time.min != "") {
 				os << "[" << songs[i].time.min << ":" << songs[i].time.sec << "]\t" << songs[i].name << "\n";
 			}
 			else {
@@ -84,35 +85,62 @@ std::ostream& operator<<(std::ostream& os, album& obj) {
 }
 
 int main() {
-	album a("billy joel", "myalbum", 4);
-	a.addSong("mysong", 3, 23);
-	a.addSong("mysong1", 4, 0);
-	a.addSong("mysong2", 2, 1);
-	a.addSong("as");
 
-	album b("billy joel", "myalbum2", 2);
-	b.addSong("mysongrem", 1, 12);
-	b.addSong("thesong");
-	
 	linkedMap<std::string, album> m;
-	m.pushBack(a.getName(), a);
-	m.pushBack(b.getName(), b);
-	m.display("print");
-	std::cout << m.at(a.getName());
-	
-	
 	//read 
-	/*
+	
+	queue<song> q;
 	std::string s;
+	std::string ar;
+	std::string na;
+	std::string min;
+	std::string sec;
+	std::string st;
+	int counter = 0;
+	song son;
 
 	std::ifstream fin(FILENAME);
-	for (int i = 0; i < 1056; i++) {
-		getline(fin, s);
-		std::cout << s << "\n";
+	while(getline(fin, s)) {
+		if (s.find("-") != -1) {
+			ar = s.substr(0, s.find_first_of("-") - 1);
+			na = s.substr(s.find_first_of("-") + 2);
+			while (getline(fin, s) && s != "") {
+				counter++;
+				if (s.find(":") != -1 && s.find("\t") != -1) {
+					min = s.substr(s.find_first_of("\t") + 1, (s.find_first_of("\t") + 2 == s.find_first_of(":") ? 1 : 2));
+					sec = s.substr(s.find_first_of(":") + 1);
+					st = s.substr(0, s.find_first_of(":") - 2);
+					son.name = st;
+					son.time.min = min;
+					son.time.sec = sec;
+					q.enqueue(son);
+				}
+				else {
+					son.name = s;
+					son.time.min = "";
+					son.time.min = "";
+					q.enqueue(son);
+				}
+				
+			}
+			album al(ar, na, counter);
+			for (int i = 0; i < counter; i++) {
+				son = q.dequeue();
+				if (son.time.min == "") {
+					al.addSong(son.name);
+				}
+				else {
+					al.addSong(son.name, son.time.min, son.time.sec);
+				}
+			}
+			counter = 0;
+			m.pushBack(al.getName(), al);
+		}
+		
 	}
 	fin.close();
-	*/
 	
+	m.display("Best Albums of All Time");
 
 
 	std::cin.get();

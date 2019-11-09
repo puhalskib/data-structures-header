@@ -47,7 +47,7 @@ public:
 	}
 	A dequeue() {	//take off the front and return value
 		if (front == NULL) { //if queue is empty
-			return NULL;
+			return A();
 		}
 		else {
 			A ret = front->data;

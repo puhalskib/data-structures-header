@@ -19,7 +19,7 @@ Fixing A Hole	2:37
 She's Leaving Home	3:23
 Being For The Benefit Of Mr. Kite !	2:35
 Within You Without You	5:06
-When I'm Sixty-Four	2:38
+When I'm Sixty Four	2:38
 Lovely Rita	2:44
 Good Morning Good Morning	2:36
 Sgt. Pepper's Lonely Hearts Club Band (Reprise)	1:19
@@ -117,7 +117,7 @@ The Beatles - The Beatles
 Back In The U.S.S.R.	2:42
 Dear Prudence	3:50
 Glass Onion	2:16
-Ob-La-Di, Ob-La-Da	3:07
+Ob La Di, Ob La Da	3:07
 Wild Honey Pie	0:53
 The Continuing Story Of Bungalow Bill	3:11
 While My Guitar Gently Weeps	4:44
@@ -138,11 +138,11 @@ Everybody's Got Something To Hide Except Me And My Monkey	2:24
 Sexy Sadie	3:14
 Helter Skelter	3:40
 Long, Long, Long	3:02
-Revolution  4:12
+Revolution	4:12
 Honey Pie	2:40
 Savoy Truffle	2:57
 Cry Baby Cry	3:00
-Revolution  8:17
+Revolution	8:17
 Good Night	3:09
 
 Led Zeppelin - Led Zeppelin II
@@ -230,7 +230,7 @@ Out On The Tiles	4:04
 Gallows Pole	4:58
 Tangerine	3:12
 That's The Way	5:38
-Bron-Y-Aur Stomp	4:20
+Bron Y Aur Stomp	4:20
 Hats Off To (Roy) Harper	3:41
 
 The Beatles - Rubber Soul
@@ -447,7 +447,8 @@ The Long And Winding Road	3:40
 For You Blue	2:33
 Get Back	3:09
 
-Queen - A Night At The OperaDeath On Two Legs (Dedicated To ...)	3:37
+Queen - A Night At The Opera
+Death On Two Legs	3:37
 Lazing On A Sunday Afternoon	1:06
 I'm In Love With My Car	3:00
 You're My Best Friend	2:47
@@ -564,7 +565,7 @@ Houses Of The Holy	4:01
 Trampled Under Foot	5:38
 Kashmir	9:41
 In The Light	8:46
-Bron-Yr-Aur	2:07
+Bron Yr Aur	2:07
 Down By The Seaside	5:15
 Ten Years Gone	6:55
 Night Flight	3:37
@@ -716,16 +717,16 @@ King Of Pain	4:59
 Wrapped Around Your Finger	5:12
 Tea In The Sahara	4:11
 
-Crosby, Stills, Nash & Young - Déjà Vu
+Crosby, Stills, Nash & Young - Deja Vu
 Carry On	4:25
 Teach Your Children	2:53
 Almost Cut My Hair	4:25
 Helpless	3:30
 Woodstock	3:52
-Déjà Vu	4:10
+Deja Vu	4:10
 Our House	2:59
 4 + 20	1:55
-Country Girl    5:05
+Country Girl	5:05
 Everybody I Love You	2:20
 
 The Jimi Hendrix Experience - Electric Ladyland
@@ -826,7 +827,7 @@ Ordinary Pain	6:22
 Isn't She Lovely	6:33
 Joy Inside My Tears	6:29
 Black Man	8:29
-Ngiculela - Es Una Historia - I Am Singing	3:48
+Ngiculela Es Una Historia I Am Singing	3:48
 If It's Magic	3:11
 As	7:07
 Another Star	8:19
@@ -890,7 +891,7 @@ The Bewlay Brothers	5:21
 
 Jethro Tull - Aqualung
 Aqualung	
-Cross-Eyed Mary	
+Cross Eyed Mary	
 Cheap Day Return	
 Mother Goose	
 Wond'ring Aloud	
@@ -899,7 +900,7 @@ My God
 Hymn 43	
 Slipstream	
 Locomotive Breath	
-Wind-Up
+Wind Up
 
 Led Zeppelin - In Through The Out Door
 In The Evening	6:48
@@ -978,7 +979,7 @@ Burn This Disco Out	3:38
 Nirvana - In Utero
 Serve The Servants	3:34
 Scentless Apprentice	3:47
-Heart-Shaped Box	4:39
+Heart Shaped Box	4:39
 Rape Me	2:49
 Frances Farmer Will Have Her Revenge On Seattle	4:07
 Dumb	2:29
@@ -994,7 +995,7 @@ Hit The Lights	4:17
 The Four Horsemen	7:08
 Motorbreath	3:03
 Jump In The Fire	4:50
-(Anesthesia)-Pulling Teeth	3:27
+(Anesthesia) Pulling Teeth	3:27
 Whiplash	4:06
 Phantom Lord	4:52
 No Remorse	6:24
@@ -1052,5 +1053,6 @@ You Took The Words Right Out Of My Mouth (Hot Summer Night)	5:04
 Heaven Can Wait	4:38
 All Revved Up With No Place To Go	4:19
 Two Out Of Three Ain't Bad	5:23
-Paradise By The Dash Board Light    8:28
+Paradise By The Dash Board Light	8:28
 For Crying Out Loud	8:45
+
