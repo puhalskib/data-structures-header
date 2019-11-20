@@ -28,5 +28,8 @@
     <Text Include="list.txt">
       <Filter>Resource Files</Filter>
     </Text>
+    <Text Include="adjmatrix.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
   </ItemGroup>
 </Project>
