@@ -246,18 +246,18 @@ public:
 		int counter = 0;
 		node *tmp;
 		tmp = head;
-		while (tmp->next != NULL && (index > counter)) {
+		while (tmp != NULL && (index > counter)) {
 			tmp = tmp->next;
 			counter++;
 		}
 		return tmp->data;
 	}
 	
-	void display() const {
+	void display(std::string &listName) {
 		//create temporary node pointer then set the pointer to point to the head of list
 		node *tmp;
 		tmp = head;
-		std::cout << "{\n";
+		std::cout << listName << ": {\n";
 		//go through the list with the tmp pointer by keep setting the tmp to the next pointer
 		int counter = 0;
 		while (tmp != NULL) {
@@ -267,22 +267,7 @@ public:
 		}
 		std::cout << "}\n";
 	}
-	std::string toString() const {
-		//create temporary node pointer then set the pointer to point to the head of list
-		std::string out = "";
-		node *tmp;
-		tmp = head;
-		out += "{\n";
-		//go through the list with the tmp pointer by keep setting the tmp to the next pointer
-		int counter = 0;
-		while (tmp != NULL) {
-			out += "[" + std::to_string(counter) + "] " + std::to_string(tmp->data) + "\n";
-			tmp = tmp->next;
-			counter++;
-		}
-		out += "}\n";
-		return out;
-	}
+
 	//insert data at an index
 	void insert(const int &index, const l &value) {
 		//if they index at value zero, place the node at the head
