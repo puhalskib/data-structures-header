@@ -1,9 +1,12 @@
-#include "structures.h"
+﻿#include "structures.h"
 #include <fstream>
+#include <vector>
 
 // Number of vertices in the graph 
-#define V 9 
+#define V 5
 
+
+/*
 // A utility function to find the vertex with minimum distance value, from 
 // the set of vertices not yet included in shortest path tree 
 int minDistance(int dist[], bool sptSet[])
@@ -28,7 +31,75 @@ int printSolution(int dist[])
 	for (int i = 0; i < V; i++)
 		printf("%d \t\t %d\n", i, dist[i]);
 }
+*/
+bool search(std::vector<int> s, int a) {
+	for (int i = 0; i < s.size(); i++) {
+		if (a == s[i]) {
+			return true;
+		}
+	}
+	return false;
+}
+int minDist(std::vector<int> q, int dist[V]) {
+	int v = INT_MAX;
+	for (int i = 0; i < q.size(); i++) {
+		if (dist[q[i]] < v) {
+			v = dist[q[i]];
+		}
+	}
+	return v;
+}
+void Dijkstra(int Graph[V][V], int source) {
 
+	std::vector<int> q;
+
+	int dist[V];
+	int prev[V];
+
+	for (int i = 0; i < V; i++) {
+		dist[i] = INT_MAX;
+		prev[i] = NULL;
+		q.push_back(i);
+	}
+
+	dist[source] = 0;
+
+	//while Q is not empty:
+	while (q.empty() == false) {
+		//u ← vertex in Q with min dist[u]
+		int u = minDist(q, dist);
+
+		//remove u from Q
+		q.pop_back();
+
+
+		//for each neighbor v of u :           // only v that are still in Q
+		for (int i = 0; i < V && search(q, i); i++) {
+			//alt ← dist[u] + length(u, v)
+			int alt = dist[u] + Graph[u][i];
+			if (alt < dist[i]) {
+				dist[i] = alt;
+				prev[i] = u;
+			}
+		}
+	}
+
+	//print
+	std::cout << "\nFINAL\ndist[";
+	for (int i = 0; i < V; i++) {
+		std::cout << dist[i] << ((i < V - 1) ? ", " : "]\n");
+	}
+	std::cout << "prev[";
+	for (int i = 0; i < V; i++) {
+		std::cout << prev[i] << ((i < V - 1) ? ", " : "]\n");
+	}
+}
+
+
+
+
+
+/*
 // Function that implements Dijkstra's single source shortest path algorithm 
 // for a graph represented using adjacency matrix representation 
 void dijkstra(int graph[V][V], int src)
@@ -69,18 +140,22 @@ void dijkstra(int graph[V][V], int src)
 	// print the constructed distance array 
 	printSolution(dist);
 }
+*/
+
 
 int main() {
-	int adj[50][50];
+	
 
 	//read matrix
+	/*
 	std::ifstream fout("nums.txt");
 	for (int i = 0; i < 50; i++) {
 		fout >> adj[0][i];
 	}
 	fout.close();
-
-
+	*/
+	int adj[V][V] = { {0, 6, INT_MAX, 1, INT_MAX}, {6, 0, 5, 2, 2}, {INT_MAX, 5, 0, INT_MAX, 5}, {1, 2, INT_MAX, 0, 1}, {INT_MAX, 2, 5, 1, 0} };
+	Dijkstra(adj, 0);
 
 
 	std::cin.get();

@@ -308,6 +308,14 @@ public:
 			dele(temp);
 		}
 	}
+	bool isEmpty() {
+		if (head == NULL) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
 private:
 	void after(node* &a, const l &value) {
 		node* p = new node;
